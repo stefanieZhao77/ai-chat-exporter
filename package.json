@@ -11,10 +11,16 @@
   },
   "devDependencies": {
     "@crxjs/vite-plugin": "^2.0.0-beta.23",
+    "jsdom": "^28.1.0",
     "vite": "^5.0.0",
     "vitest": "^1.0.0"
   },
-  "keywords": ["chrome-extension", "chatgpt", "obsidian", "markdown"],
+  "keywords": [
+    "chrome-extension",
+    "chatgpt",
+    "obsidian",
+    "markdown"
+  ],
   "author": "",
   "license": "MIT"
 }

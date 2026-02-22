@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-i18n="popupTitle">AI Chat Exporter</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="popup">
+      <header class="head">
+        <h1 data-i18n="popupTitle">AI Chat Exporter</h1>
+        <p class="sub" data-i18n="popupSubtitle">Export current conversation to your Obsidian vault.</p>
+      </header>
+
+      <button id="exportBtn" class="primary" data-i18n="popupExportBtn">Export current chat</button>
+
+      <p id="status" class="status is-empty" aria-live="polite"></p>
+
+      <a
+        id="openOptionsLink"
+        class="secondary-link"
+        href="../options/options.html"
+        target="_blank"
+        rel="noreferrer"
+        data-i18n="popupOpenOptions"
+      >Open options</a>
+    </main>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>
