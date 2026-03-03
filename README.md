@@ -2,7 +2,7 @@
 
 A Chrome extension that exports AI chat conversations (ChatGPT and Gemini) to Markdown and writes them directly to your Obsidian vault folder.
 
-## Current Scope (v0.1.0)
+## Current Scope (v0.2.0)
 
 - Platforms: `chatgpt.com`, `gemini.google.com`
 - Export to Markdown with YAML frontmatter
@@ -10,6 +10,8 @@ A Chrome extension that exports AI chat conversations (ChatGPT and Gemini) to Ma
 - Image download and local path replacement (`assets/` by default)
 - Trigger methods: popup, floating button, keyboard shortcut, context menu
 - Custom filename and subfolder templates
+- **In-page message selection** - Choose specific messages to export
+- **User message toggle** - Option to exclude your own messages from exports
 
 ## Development
 
