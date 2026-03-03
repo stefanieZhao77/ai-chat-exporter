@@ -5,6 +5,7 @@ export const DEFAULT_SETTINGS = {
   filenameTemplate: '{platform}-{title}-{datetime}',
   includeFrontmatter: true,
   includeTimestamps: true,
+  includeUserMessages: true,
   enableFab: true,
   autoHideFab: true,
   uiLanguage: 'auto',
@@ -26,6 +27,7 @@ export const DIRECTORY_DB = {
 
 export const EXPORT_MESSAGE_TYPES = {
   triggerExport: 'ACE_TRIGGER_EXPORT',
+  previewChat: 'ACE_PREVIEW_CHAT',
   runExport: 'ACE_RUN_EXPORT',
   exportChat: 'ACE_EXPORT_CHAT',
   exportResult: 'ACE_EXPORT_RESULT',

@@ -69,6 +69,7 @@ async function triggerActiveTabExport(trigger) {
     await chrome.tabs.sendMessage(tab.id, {
       type: EXPORT_MESSAGE_TYPES.triggerExport,
       trigger,
+      selection: { mode: 'page-picker' },
     });
   } catch (error) {
     console.warn('[ai-chat-exporter] failed to trigger export', error);

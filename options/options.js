@@ -19,6 +19,7 @@ const fields = {
   uiLanguage: document.getElementById('uiLanguage'),
   includeFrontmatter: document.getElementById('includeFrontmatter'),
   includeTimestamps: document.getElementById('includeTimestamps'),
+  includeUserMessages: document.getElementById('includeUserMessages'),
   enableFab: document.getElementById('enableFab'),
   autoHideFab: document.getElementById('autoHideFab'),
 };
@@ -64,6 +65,7 @@ saveBtn.addEventListener('click', async () => {
     uiLanguage: fields.uiLanguage.value || DEFAULT_SETTINGS.uiLanguage,
     includeFrontmatter: fields.includeFrontmatter.checked,
     includeTimestamps: fields.includeTimestamps.checked,
+    includeUserMessages: fields.includeUserMessages.checked,
     enableFab: fields.enableFab.checked,
     autoHideFab: fields.autoHideFab.checked,
   };
@@ -82,6 +84,7 @@ function applySettingsToForm(settings) {
   fields.uiLanguage.value = settings.uiLanguage || DEFAULT_SETTINGS.uiLanguage;
   fields.includeFrontmatter.checked = settings.includeFrontmatter;
   fields.includeTimestamps.checked = settings.includeTimestamps;
+  fields.includeUserMessages.checked = settings.includeUserMessages;
   fields.enableFab.checked = settings.enableFab;
   fields.autoHideFab.checked = settings.autoHideFab;
 }

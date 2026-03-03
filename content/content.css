@@ -57,3 +57,80 @@
   line-height: 1.4;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
+
+.ace-message-select-host {
+  position: relative !important;
+}
+
+.ace-message-select-badge {
+  position: absolute;
+  left: -24px;
+  top: 8px;
+  z-index: 2147482998;
+  background: rgba(2, 6, 23, 0.78);
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  border-radius: 6px;
+  padding: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ace-chat-select {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: #0ea5e9;
+}
+
+#ace-select-panel {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  z-index: 2147483002;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(2, 6, 23, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.3);
+}
+
+#ace-select-count {
+  font-size: 12px;
+  color: #cbd5e1;
+  margin-right: 4px;
+}
+
+#ace-select-panel button {
+  border: 0;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+#ace-select-export-selected {
+  background: #0284c7;
+  color: #f8fafc;
+}
+
+#ace-select-export-selected:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#ace-select-export-all {
+  background: #334155;
+  color: #f8fafc;
+}
+
+#ace-select-cancel {
+  background: transparent;
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+}

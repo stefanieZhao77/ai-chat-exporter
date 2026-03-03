@@ -9,6 +9,14 @@ function inferModel() {
   return 'unknown';
 }
 
+function findContentNode(node) {
+  return (
+    node.querySelector('.markdown') ||
+    node.querySelector('[data-message-content]') ||
+    node
+  );
+}
+
 export class ChatGPTAdapter extends BaseAdapter {
   constructor() {
     super();
@@ -19,22 +27,20 @@ export class ChatGPTAdapter extends BaseAdapter {
     return location.hostname === 'chatgpt.com';
   }
 
-  extractChatData() {
+  extractMessageEntries() {
     const messageNodes = Array.from(document.querySelectorAll('[data-message-author-role]'));
 
-    const messages = messageNodes
+    return messageNodes
       .map((node) => {
         const role = node.getAttribute('data-message-author-role') || 'unknown';
-        const contentNode =
-          node.querySelector('.markdown') ||
-          node.querySelector('[data-message-content]') ||
-          node;
+        const contentNode = findContentNode(node);
         const markdownContent = nodeToMarkdown(contentNode);
         const images = collectImages(contentNode);
 
         if (!markdownContent && images.length === 0) return null;
 
         return {
+          sourceNode: node,
           role,
           markdownContent,
           timestamp: new Date().toISOString(),
@@ -42,6 +48,16 @@ export class ChatGPTAdapter extends BaseAdapter {
         };
       })
       .filter(Boolean);
+  }
+
+  extractChatData() {
+    const entries = this.extractMessageEntries();
+    const messages = entries.map(({ role, markdownContent, timestamp, images }) => ({
+      role,
+      markdownContent,
+      timestamp,
+      images,
+    }));
 
     const title =
       document.title.replace(/\s*[-|].*$/, '').trim() ||

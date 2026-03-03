@@ -15,18 +15,21 @@ exportBtn.addEventListener('click', async () => {
   renderStatus(t('popupStatusExporting'), 'loading');
 
   try {
-    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-    if (!tab?.id || !isSupportedChatUrl(tab.url)) {
-      throw new Error(t('popupErrorOpenChat'));
-    }
+    const tab = await getActiveChatTab();
 
     const result = await chrome.tabs.sendMessage(tab.id, {
       type: EXPORT_MESSAGE_TYPES.triggerExport,
       trigger: 'popup',
+      selection: { mode: 'page-picker' },
     });
 
     if (!result?.ok) {
       throw new Error(result?.error || t('popupErrorUnknown'));
+    }
+
+    if (result.startedSelection) {
+      renderStatus(t('popupStatusSelectionStarted'), 'success');
+      return;
     }
 
     renderStatus(t('popupStatusExported', [result.path]), 'success');
@@ -34,6 +37,14 @@ exportBtn.addEventListener('click', async () => {
     renderStatus(t('popupStatusFailed', [error.message || String(error)]), 'error');
   }
 });
+
+async function getActiveChatTab() {
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  if (!tab?.id || !isSupportedChatUrl(tab.url)) {
+    throw new Error(t('popupErrorOpenChat'));
+  }
+  return tab;
+}
 
 function renderStatus(message, kind = 'loading') {
   status.textContent = message;

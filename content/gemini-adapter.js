@@ -60,10 +60,10 @@ export class GeminiAdapter extends BaseAdapter {
     return location.hostname === 'gemini.google.com';
   }
 
-  extractChatData() {
+  extractMessageEntries() {
     const turnNodes = Array.from(document.querySelectorAll('user-query, model-response'));
 
-    const messages = turnNodes
+    return turnNodes
       .map((node) => {
         const role = node.matches('user-query') ? 'user' : 'assistant';
         const contentNode = findContentNode(node, role);
@@ -73,6 +73,7 @@ export class GeminiAdapter extends BaseAdapter {
         if (!markdownContent && images.length === 0) return null;
 
         return {
+          sourceNode: node,
           role,
           markdownContent,
           timestamp: new Date().toISOString(),
@@ -80,6 +81,16 @@ export class GeminiAdapter extends BaseAdapter {
         };
       })
       .filter(Boolean);
+  }
+
+  extractChatData() {
+    const entries = this.extractMessageEntries();
+    const messages = entries.map(({ role, markdownContent, timestamp, images }) => ({
+      role,
+      markdownContent,
+      timestamp,
+      images,
+    }));
 
     return {
       platform: this.platform,
